@@ -1,8 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const loginRoutes = require('./routes/login')
-const signupRoute = require('./routes/signup')
+const userRoutes = require('./routes/user')
 
 
 const app = express();
@@ -23,8 +22,7 @@ app.use((req, res, next) => {
   });
 
 
-app.use('/api/auth/login', loginRoutes);
-app.use('/api/auth/signup', signupRoute);
+app.use('/api/auth', userRoutes);
 
 
 
