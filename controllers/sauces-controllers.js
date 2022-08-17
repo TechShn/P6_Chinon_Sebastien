@@ -1,6 +1,6 @@
-const Sauces = require('../models/sauces');
+const Sauce = require('../models/sauces-models');
 
-exports.getAllSauces = (req, res, next) => {
+exports.getSauces = (req, res, next) => {
         const sauces = [
             {
             userId: 'TechShn_P6',
@@ -31,3 +31,13 @@ exports.getAllSauces = (req, res, next) => {
     ];
     res.status(200).json({sauces})
 }
+
+exports.createSauce = (req, res, next) => {
+    const sauce = new Sauce({
+        ...req.body
+    });
+    console.log(sauce);
+    sauce.save()
+      .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
+      .catch(error => res.status(400).json({ error }));
+  };
