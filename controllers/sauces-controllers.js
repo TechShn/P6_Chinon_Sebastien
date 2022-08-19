@@ -1,43 +1,31 @@
-const Sauce = require('../models/sauces-models');
+const Sauce = require('../models/sauces-model');
 
-exports.getSauces = (req, res, next) => {
-        const sauces = [
-            {
-            userId: 'TechShn_P6',
-            name: 'Roasted Garlic',
-            manufacturer: "Dave's gourmet",
-            description: "Cette sauce au goût d'ail grillé est idéale pour assaisonner les pâtes fraîches, les barbecues, les viandes, le poulet ou encore vos poelées de pomme de terre.",
-            mainPepper: "Piment Tabasco, ail",
-            imageUrl: "https://www.sauce-piquante.fr/265-large_default/sauce-piquante-a-l-ail-grille-dave-s.jpg",
-            heat: 5,
-            likes: 15,
-            dislikes: 2,
-            usersLiked: ['non'],
-            usersDisliked: ['non']
-        },
-        {
-            userId: 'nonono',
-            name: 'Roasted Garlic',
-            manufacturer: "Dave's gourmet",
-            description: "Cette sauce au goût d'ail grillé est idéale pour assaisonner les pâtes fraîches, les barbecues, les viandes, le poulet ou encore vos poelées de pomme de terre.",
-            mainPepper: "Piment Tabasco, ail",
-            imageUrl: "https://www.sauce-piquante.fr/265-large_default/sauce-piquante-a-l-ail-grille-dave-s.jpg",
-            heat: 5,
-            likes: 15,
-            dislikes: 2,
-            usersLiked: ['non'],
-            usersDisliked: ['non']
-        }
-    ];
-    res.status(200).json({sauces})
-}
-
-exports.createSauce = (req, res, next) => {
-    const sauce = new Sauce({
-        ...req.body
-    });
-    console.log(sauce);
-    sauce.save()
-      .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
-      .catch(error => res.status(400).json({ error }));
+// Récupérer les sauces
+exports.getAllSauces = (req, res, next) => {
+    Sauce.find()
+      .then((sauces) => {
+        res.status(200).json(sauces);
+      })
+      .catch((error) => {
+        res.status(400).json({
+          error: error,
+        });
+      });
   };
+  
+  // Créer une sauce
+  exports.createSauce = (req, res, next) => {
+    console.log(req.body)
+    // const sauceObject = JSON.parse(req.body.sauce);
+    // delete sauceObject._id;
+    // const sauce = new Sauce({
+    //   ...sauceObject,
+    //   imageUrl: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+    // });
+    // sauce
+    //   .save()
+    //   .then(() => res.status(201).json({ message: "Sauce enregistré !" }))
+    //   .catch((error) => res.status(400).json({ error }));
+  };
+  
+  
