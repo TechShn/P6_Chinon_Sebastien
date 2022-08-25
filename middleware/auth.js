@@ -11,6 +11,6 @@ module.exports = (req, res, next) => {
 	next();
    } catch(error) {
        res.status(401).json({ error })
-       console.log(req.headers);
+       console.log(jwt.verify(token, 'RANDOM_TOKEN_SECRET'));
    }
 };
