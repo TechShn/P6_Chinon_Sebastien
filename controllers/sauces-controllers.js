@@ -1,6 +1,5 @@
-const Sauce = require('../models/sauces-models');
+const Sauce = require('../models/sauces-model')
 const fs = require('fs');
-const { log } = require('console');
 
 // Récupérer les sauces
 exports.getAllSauces = (req, res, next) => {
