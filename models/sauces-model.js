@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+// Formulaire add sauce
 const sauceSchema = mongoose.Schema({
     userId: {type: String, required: false},
     name: {type: String, required: true},

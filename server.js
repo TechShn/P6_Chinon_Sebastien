@@ -1,4 +1,6 @@
+//Importe le package http de node.
 const http = require('http');
+
 const app = require('./app');
 
 const normalizePort = val => {
@@ -35,6 +37,7 @@ const errorHandler = error => {
   }
 };
 
+//Permet de créer le server.
 const server = http.createServer(app);
 
 server.on('error', errorHandler);
@@ -44,4 +47,5 @@ server.on('listening', () => {
   console.log('Listening on ' + bind);
 });
 
+//Permet de configurer le port du server.
 server.listen(port);
